@@ -1,20 +1,42 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+// 懒加载
+const Home = () => import('../views/home/Home')
+const Cart = () => import('../views/cart/Cart')
+const Category = () => import('../views/category/Category')
+const Profile = () => import('../views/profile/Profile')
+const Detail = () => import('../views/detail/Detail')
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+// 配置路由的映射关系
+const routes = [ {
+  // 这里是重定向
+  path:'',
+  redirect:'/home'
+},
+{
+  path: '/home',
+  name: 'Home',
+  component: Home
+},
+{
+  path: '/cart',
+  name: 'Car',
+  component: Cart
+},
+{
+  path: '/category',
+  name: 'About',
+  component: Category
+},
+{
+  path: '/profile',
+  name: 'Me',
+  component: Profile
+},
+{
+  path: '/detail/:iid',
+  name: 'dt',
+  component: Detail
+},
 ]
 
 const router = createRouter({
@@ -23,3 +45,5 @@ const router = createRouter({
 })
 
 export default router
+
+
